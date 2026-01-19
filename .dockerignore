@@ -1,0 +1,52 @@
+# version control
+.git
+.gitignore
+.github
+
+# cicd artifacts
+.dockerignore
+Dockerfile
+
+# build artifacts and binaries
+server
+ipecho-api
+*.exe
+*.dll
+*.so
+*.dylib
+
+# tests and coverage
+*_test.go
+*.test
+*.out
+coverage.*
+*.coverprofile
+profile.cov
+
+# workspaces
+go.work
+go.work.sum
+
+# environment and secrets
+.env
+.env.*
+*.key
+*.pem
+
+# editor and ide
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# documentation 
+AGENTS.md
+README.md
+LICENSE
+
+# temp / misc
+Untitled
+*.log
+*.tmp
