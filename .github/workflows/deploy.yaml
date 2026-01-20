@@ -4,6 +4,13 @@ on:
   push:
     branches: [main]
     tags: ["v*"]
+    paths:
+      - "cmd/**"
+      - "internal/**"
+      - "go.mod"
+      - "go.sum"
+      - "Dockerfile"
+      - ".github/workflows/deploy.yaml"
 
 env:
   REGISTRY: us-central1-docker.pkg.dev
@@ -72,7 +79,14 @@ jobs:
             --image ${IMAGE_TAG} \
             --region us-central1 \
             --platform managed \
-            --allow-unauthenticated
+            --allow-unauthenticated \
+            --use-http2 \
+            --port 8080 \
+            --startup-cpu-boost \
+            --startup-probe-type=http \
+            --startup-probe-path=/health \
+            --startup-probe-initial-delay=5 \
+            --startup-probe-timeout=5
           echo "tag=${IMAGE_TAG}" >> $GITHUB_OUTPUT
 
       - name: Deployment summary
