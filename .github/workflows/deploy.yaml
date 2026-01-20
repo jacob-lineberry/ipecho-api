@@ -82,11 +82,9 @@ jobs:
             --allow-unauthenticated \
             --use-http2 \
             --port 8080 \
-            --startup-cpu-boost \
-            --startup-probe-type=http \
-            --startup-probe-path=/health \
-            --startup-probe-initial-delay=5 \
-            --startup-probe-timeout=5
+            --cpu-boost \
+            --startup-probe httpGet.path=/health,httpGet.port=8080,initialDelaySeconds=0,timeoutSeconds=3,periodSeconds=5,failureThreshold=3 \
+            --liveness-probe httpGet.path=/health,httpGet.port=8080,initialDelaySeconds=10,timeoutSeconds=3,periodSeconds=30,failureThreshold=3
           echo "tag=${IMAGE_TAG}" >> $GITHUB_OUTPUT
 
       - name: Deployment summary
