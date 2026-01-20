@@ -5,7 +5,6 @@ ARG GO_VERSION=1.25.5
 # ========================================
 # build stage: compile static go binary
 # ========================================
-
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION}-alpine AS build
 
 WORKDIR /src
@@ -37,7 +36,6 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
   -ldflags="-s -w" \
   -o /out/ipecho-api \
   ./cmd/server
-
 
 # ========================================
 # runtime stage: minimal distroless image
