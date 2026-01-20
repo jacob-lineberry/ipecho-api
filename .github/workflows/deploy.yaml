@@ -80,7 +80,6 @@ jobs:
             --region us-central1 \
             --platform managed \
             --allow-unauthenticated \
-            --use-http2 \
             --port 8080 \
             --cpu-boost \
             --startup-probe httpGet.path=/health,httpGet.port=8080,initialDelaySeconds=0,timeoutSeconds=3,periodSeconds=5,failureThreshold=3 \
